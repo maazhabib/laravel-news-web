@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin\User;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,8 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $pagination = User::paginate(15);
+        return view('Admin.index')->with('Users', $pagination);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,7 +49,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        // return view('Admin.index')->with('User_data', User::all());
     }
 
     /**

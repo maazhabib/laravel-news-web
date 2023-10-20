@@ -7,11 +7,11 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>ADMIN Panel</title>
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
         <!-- Font Awesome Icon -->
-        <link rel="stylesheet" href="css/font-awesome.css">
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
         <!-- Custom stlylesheet -->
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     </head>
     <body>
         <!-- HEADER -->
@@ -27,7 +27,7 @@
                     <!-- /LOGO -->
                       <!-- LOGO-Out -->
                     <div class="col-md-offset-9  col-md-1">
-                        <a href="logout.php" class="admin-logout" >logout</a>
+                        <a href="logout.php" class="admin-logout" >Logout</a>
                     </div>
                     <!-- /LOGO-Out -->
                 </div>
@@ -55,3 +55,13 @@
             </div>
         </div>
         <!-- /Menu Bar -->
+
+
+
+        @yield('content')
+
+
+
+
+
+        @extends('Admin.layout.footer')
