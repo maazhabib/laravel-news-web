@@ -10,27 +10,31 @@
     </div>
     <div class="col-md-offset-3 col-md-6">
         <!-- Form for show edit-->
-        <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
-            <div class="form-group">
-                <input type="hidden" name="post_id"  class="form-control" value="1" placeholder="">
-            </div>
+        <form action="{{ route('post.update' , $post->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+            @csrf
+            @method('PUT')
+
             <div class="form-group">
                 <label for="exampleInputTile">Title</label>
-                <input type="text" name="post_title"  class="form-control" id="exampleInputUsername" value="Lorem ipsum dolor sit amet">
+                <input type="text" name="title"  class="form-control" id="exampleInputUsername" value="{{ $post->title }}">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1"> Description</label>
-                <textarea name="postdesc" class="form-control"  required rows="5">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                </textarea>
+                <textarea name="description" class="form-control"  required rows="5">{{ $post->description }}</textarea>
             </div>
             <div class="form-group">
                 <label for="exampleInputCategory">Category</label>
-                <select class="form-control" name="category">
-                    <option value="">Html</option>
-                    <option value="">Css</option>
-                    <option value="">javascript</option>
-                    <option value="">Python</option>
+                <select class="form-control" name="categories_id">
+                    @foreach ($categories as $cat)
+
+                        <option value="{{ $cat->id }}" selected>{{ $cat->categories_name }}</option>
+
+                        {{-- @if (isset($psot))
+                            @if ($cat->id == $post->categories_id)
+                            selected
+                            @endif
+                        @endif --}}
+                    @endforeach
                 </select>
             </div>
             <div class="form-group">
@@ -39,7 +43,7 @@
                 <img  src="upload/post_1.jpg" height="150px">
                 <input type="hidden" name="old-image" value="">
             </div>
-            <input type="submit" name="submit" class="btn btn-primary" value="Update" />
+            <input type="submit" class="btn btn-primary" value="Update" />
         </form>
         <!-- Form End -->
       </div>

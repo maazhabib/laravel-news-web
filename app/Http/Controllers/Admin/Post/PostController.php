@@ -13,53 +13,69 @@ class PostController extends Controller
 
     public function index()
         {
-            $post = post::orderBy('id', 'desc')->paginate(12);
-            return view('Admin.post.index', ['post' => $post]);
+            $post = post::orderBy('id', 'desc', categories::all())->paginate(12);
+            return view('admin.post.index', ['post' => $post ]);
+
         }
 
     public function create()
         {
-            return view('Admin.post.create')->with('categories', categories::all());
-
+            return view('admin.post.create')->with('categories', categories::all());
         }
 
     public function store(Request $request)
         {
-
-            // dd($request );
             $validatedData = $request->validate
             ([
-                'post_title'                            => 'required|string',
-                'postdesc'                              => 'required|string',
-                // 'category_name'                         => 'required|exists:App\Models\Categories,id',
-                // 'image'                                 => 'nullable|mimes:jpg,png,jpeg,gif,svg|max:2048',
-
+                'title'                           => 'required|string',
+                'description'                     => 'required|string',
+                'categories_id'                   => 'required|exists:App\Models\Categories,id',
+                // 'image'                           => 'nullable|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
-            $categories = new post();
-            $categories->title                     = $validatedData['post_title'];
-            $categories->description                     = $validatedData['postdesc'];
-            $categories->save();
+            $post = new post();
+            $post->title                           = $validatedData['title'];
+            $post->description                     = $validatedData['description'];
+            $post->categories_id                   = $validatedData['categories_id'];
+            $post->save();
 
             return redirect()->route('post.index');
         }
 
     public function show($id)
         {
-            //
+
         }
 
     public function edit($id)
         {
-            //
+            $post = post::find($id);
+            return view('admin.post.edit' , compact('post'))->with('categories', categories::all());
         }
 
     public function update(Request $request, $id)
         {
-            //
+            // dd($request);
+            $validatedData = $request->validate
+            ([
+                'title'                           => 'required|string',
+                'description'                     => 'required|string',
+                'categories_id'                   => 'required|exists:App\Models\Categories,id',
+                // 'image'                           => 'nullable|mimes:jpg,png,jpeg,gif,svg|max:2048',
+
+            ]);
+            $post = Post::find($id);
+            $post->title                           = $validatedData['title'];
+            $post->description                     = $validatedData['description'];
+            $post->categories_id                   = $validatedData['categories_id'];
+            $post->save();
+            return redirect()->route('post.index');
         }
 
-    public function destroy($id)
+    public function delete($id)
         {
-            //
+            $post =Post::where('id',$id)->first();
+            $post->delete();
+
+            return redirect()->route('post.index');
         }
 }

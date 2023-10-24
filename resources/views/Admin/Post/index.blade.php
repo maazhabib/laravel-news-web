@@ -18,23 +18,22 @@
                         <th>Title</th>
                         <th>Category</th>
                         <th>Date</th>
-                        <th>Author</th>
+                        {{-- <th>Author</th> --}}
                         <th>Edit</th>
                         <th>Delete</th>
                     </thead>
                     <tbody>
-                        @foreach ($post as $post)
+                        @foreach ($post as $pos)
                             <tr>
-                                <td class='id'>{{ $post->id }}</td>
-                                <td>{{ $post->title }}</td>
-                                <td>{{ $post->category_id }}</td>
-                                <td>{{ $post->created_at }}</td>
-                                <td>{{ $post->author_id }}</td>
-                                <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                                <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
+                                <td class='id'>{{ $pos->id }}</td>
+                                <td>{{ $pos->title }}</td>
+                                <td>{{ $pos->categories->categories_name }}</td>
+                                <td>{{ $pos->created_at }}</td>
+                                {{-- <td>{{ $pos->author_id }}</td> --}}
+                                <td class='edit'><a href='{{ route('post.edit' , $pos->id) }}'><i class='fa fa-edit'></i></a></td>
+                                <td class='delete'><a href='{{ route('post.delete' , $pos->id) }}'><i class='fa fa-trash-o'></i></a></td>
                             </tr>
                         @endforeach
-
                     </tbody>
                 </table>
                 <ul class='pagination admin-pagination'>

@@ -13,12 +13,12 @@ class CategoriesController extends Controller
     public function index()
         {
             $categories = Categories::orderBy('id', 'desc')->paginate(12);
-            return view('Admin.categories.index', ['categories' => $categories]);
+            return view('admin.categories.index', ['categories' => $categories]);
         }
 
     public function create()
         {
-            return view('Admin.categories.create');
+            return view('admin.categories.create');
         }
 
 
@@ -44,18 +44,17 @@ class CategoriesController extends Controller
     public function edit($id)
         {
             $category = Categories::findOrFail($id);
-            return view('Admin.categories.edit', ['category' => $category]);
+            return view('admin.categories.edit', ['category' => $category]);
         }
 
     public function update(Request $request, $id)
         {
             $validatedData = $request->validate
             ([
-                'categories_name'          => 'required|string',
+                'categories_name'                   => 'required|string',
             ]);
             $Categories = Categories::find($id);
-            $Categories->categories_name         = $validatedData['categories_name'];
-
+            $Categories->categories_name            = $validatedData['categories_name'];
 
             $Categories->save();
             return redirect()->route('categories.index');

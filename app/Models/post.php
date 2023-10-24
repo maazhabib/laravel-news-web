@@ -11,7 +11,7 @@ class post extends Model
     protected $fillable = ['title'];
 
 
-    public function category(){
-        return $this->belongsTo(category::class);
+    public function categories(){
+        return $this->belongsTo(categories::class);
     }
 }
