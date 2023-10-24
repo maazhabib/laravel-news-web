@@ -6,83 +6,83 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
+
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $pagination = User::paginate(15);
-        return view('Admin.index')->with('Users', $pagination);
+        $pagination = User::orderBy('id', 'desc')->paginate(15);
+        return view('Admin.User.index')->with('Users', $pagination);
+
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('Admin.User.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate
+        ([
+            'name'       => 'required|string',
+            'email'      => 'required|email|unique:users,email',
+            'password'   => 'required|string',
+            'role'       => 'required|in:user,admin',
+        ]);
+
+        $user = new User();
+        $user->name         = $validatedData['name'];
+        $user->email        = $validatedData['email'];
+        $user->password     = bcrypt($validatedData['password']);
+        $user->role         = $validatedData['role'];
+        $user->save();
+        return redirect()->route('user.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        // return view('Admin.index')->with('User_data', User::all());
+        $user = User::find($id);
+        return view('Admin.User.edit' , compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('Admin.User.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate
+        ([
+            'name'          => 'required|string',
+            'email'         => 'required|email',
+            'password'      => 'nullable|string|min:6',
+            'role'          => 'required|in:user,admin',
+        ]);
+        $user = User::find($id);
+        $user->name         = $validatedData['name'];
+        $user->email        = $validatedData['email'];
+        $user->role         = $validatedData['role'];
+        $user->password     = bcrypt($validatedData['password']);
+
+        $user->save();
+        return redirect()->route('user.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function delete($id)
     {
-        //
+        $User = User::find($id);
+        $User->delete();
+        return redirect()->route('user.index');
     }
+
 }

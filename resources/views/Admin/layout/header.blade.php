@@ -22,7 +22,7 @@
                 <div class="row">
                     <!-- LOGO -->
                     <div class="col-md-2">
-                        <a href="post.php"><img class="logo" src="images/news.jpg"></a>
+                        <a href="post.php"><img class="logo" src="{{ asset('images/news.jpg') }}"></a>
                     </div>
                     <!-- /LOGO -->
                       <!-- LOGO-Out -->
@@ -41,13 +41,13 @@
                     <div class="col-md-12">
                        <ul class="admin-menu">
                             <li>
-                                <a href="">Post</a>
+                                <a href="{{ route('post.index') }}">Post</a>
                             </li>
                             <li>
-                                <a href="">Category</a>
+                                <a href="{{ route('categories.index') }}">Category</a>
                             </li>
                             <li>
-                                <a href="">Users</a>
+                                <a href="{{ route('user.index') }}">Users</a>
                             </li>
                         </ul>
                     </div>
@@ -56,12 +56,6 @@
         </div>
         <!-- /Menu Bar -->
 
-
-
         @yield('content')
-
-
-
-
 
         @extends('Admin.layout.footer')

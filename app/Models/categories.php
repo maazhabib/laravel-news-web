@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class categories extends Model
 {
     use HasFactory;
+    protected $fillable = ['categories_name', 'no_post'];
+
+    public function post(){
+        return $this->hasMany(Post::class);
+    }
+
 }

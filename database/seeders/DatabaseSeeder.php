@@ -22,5 +22,15 @@ class DatabaseSeeder extends Seeder
             'email' => Str::random(10).'@gmail.com',
             'password' => Hash::make('password'),
         ]);
+
+        $this->call(CategoriesSeeder::class);
+
+        DB::table('categories')->insert([
+            'categories_name' => Str::random(10),
+            'no_post' => Str::random(0),
+        ]);
+
     }
+
+
 }
