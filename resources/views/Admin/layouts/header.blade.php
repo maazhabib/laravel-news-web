@@ -58,4 +58,4 @@
 
         @yield('content')
 
-        @extends('Admin.layout.footer')
+        @extends('Admin.layouts.footer')

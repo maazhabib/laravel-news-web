@@ -13,14 +13,14 @@ class UserController extends Controller
     public function index()
     {
         $pagination = User::orderBy('id', 'desc')->paginate(15);
-        return view('admin.User.index')->with('Users', $pagination);
+        return view('admin.Users.index')->with('Users', $pagination);
 
     }
 
 
     public function create()
     {
-        return view('admin.User.create');
+        return view('admin.Users.create');
     }
 
 
@@ -47,14 +47,14 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('admin.user.edit' , compact('user'));
+        return view('admin.users.edit' , compact('user'));
     }
 
 
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.user.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
 

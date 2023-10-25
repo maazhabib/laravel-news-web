@@ -1,4 +1,4 @@
-@extends('Admin.layout.header')
+@extends('Admin.layouts.header')
 
 @section('content')
 
@@ -39,9 +39,8 @@
             </div>
             <div class="form-group">
                 <label for="">Post image</label>
-                <input type="file" name="new-image">
-                <img  src="upload/post_1.jpg" height="150px">
-                <input type="hidden" name="old-image" value="">
+                <input type="file" name="image"><br>
+                <img  src="{{ asset('images/' . $post->image)}}" height="150px">
             </div>
             <input type="submit" class="btn btn-primary" value="Update" />
         </form>
