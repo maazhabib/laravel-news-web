@@ -14,4 +14,13 @@
             </div>
         </div>
     </div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-info overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-dark border-b border-gray-200">
+                    <a href="{{ route('post.index') }}">ClICK HERE </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </x-app-layout>

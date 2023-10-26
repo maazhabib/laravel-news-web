@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\post\PostController;
 use App\Http\Controllers\Website\WebsiteController;
 
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,3 +29,5 @@ Route::resource('/post', PostController::class);
 Route::get('/post/delete/{post}', [PostController::class, 'delete'])->name('post.delete');
 
 Route::resource('/news-web', WebsiteController::class);
+// sidebar
+Route::get('/side-bar', [WebsiteController::class, 'sidebar'])->name('web.sidebar');

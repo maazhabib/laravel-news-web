@@ -14,4 +14,8 @@ class post extends Model
     public function categories(){
         return $this->belongsTo(categories::class);
     }
+
+    public function sidebar(){
+        Model::latest()->first();
+    }
 }

@@ -7,11 +7,11 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>News</title>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
     <!-- Custom stlylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 <!-- HEADER -->
@@ -22,7 +22,7 @@
         <div class="row">
             <!-- LOGO -->
             <div class=" col-md-offset-4 col-md-4">
-                <a href="index.php" id="logo"><img src="images/news.jpg"></a>
+                <a href="index.php" id="logo"><img src="{{ asset('images/news.jpg') }}"></a>
             </div>
             <!-- /LOGO -->
         </div>

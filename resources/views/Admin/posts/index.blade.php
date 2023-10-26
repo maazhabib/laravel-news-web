@@ -28,7 +28,7 @@
                                 <td class='id'>{{ $pos->id }}</td>
                                 <td>{{ $pos->title }}</td>
                                 <td>{{ $pos->categories->categories_name }}</td>
-                                <td>{{ $pos->created_at }}</td>
+                                <td>{{ $pos->created_at->format('d, M, Y') }}</td>
                                 {{-- <td>{{ $pos->author_id }}</td> --}}
                                 <td class='edit'><a href='{{ route('post.edit' , $pos->id) }}'><i class='fa fa-edit'></i></a></td>
                                 <td class='delete'><a href='{{ route('post.delete' , $pos->id) }}'><i class='fa fa-trash-o'></i></a></td>

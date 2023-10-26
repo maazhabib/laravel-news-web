@@ -8,20 +8,34 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
+
 class WebsiteController extends Controller
 {
 
     public function index()
-        {
-            $post = post::orderBy('id', 'desc', categories::all())->paginate(12);
-            return view('website.pages.index', ['post' => $post ]);
+    {
+        $search = request()->query('search');
+
+        if($search){
+            $post = Post::where('title', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%')
+                ->orderBy('id', 'desc')
+                ->paginate(4);
+        }else{
+            $post = Post::orderBy('id', 'desc')->paginate(4);
+            // post::orderBy('created_at', 'desc')->first();
         }
 
+        return view('website.pages.index', compact('post' , 'search'));
+    }
 
-    public function create()
+
+    public function sidebar()
         {
-            //
+            $sidebar = post::where('id')->latest('created_at')->get()->first();
+            return view('website.pages.sidebar', ['sidebar'=> $sidebar ]);
         }
+
 
 
     public function store(Request $request)
@@ -30,11 +44,14 @@ class WebsiteController extends Controller
         }
 
 
-    public function show($id)
+        public function show($id)
         {
-            $post = post::find($id);
-            return view('website.pages.index' , compact('post'))->with('categories', categories::all());
+            $post = Post::find($id);
+            $categories = categories::all();
+
+            return view('website.pages.single', compact('post', 'categories'));
         }
+
 
 
     public function edit($id)
