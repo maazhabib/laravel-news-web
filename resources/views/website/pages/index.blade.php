@@ -9,20 +9,12 @@
                     <!-- post-container -->
                     <div class="post-container">
                         @foreach ($post as $dat)
-<<<<<<< HEAD
 
                             @if (is_object($dat))
                                 <div class="post-content">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <a class="post-img" href="{{ route('news-web.show', $dat->id ) }}"><img src="{{ asset('images/' . $dat->image) }}" alt="error"/></a>
-=======
-                            @if ($dat && is_object($dat))
-                                <div class="post-content">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <a class="post-img" href=""><img src="{{ asset('images/' . $dat->image)}}" alt="error"/></a>
->>>>>>> 3eaa567ee33606c3e4ec51fa160595cffcdb63da
                                         </div>
                                         <div class="col-md-8">
                                             <div class="inner-content clearfix">
@@ -34,7 +26,6 @@
                                                     </span>
                                                     <span>
                                                         <i class="fa fa-calendar" aria-hidden="true"></i>
-<<<<<<< HEAD
                                                         {{ $dat->created_at->format('d, M, Y') }}
                                                     </span>
                                                 </div>
@@ -44,29 +35,12 @@
                                                    @endphp
                                                 </p>
                                                 <a class='read-more pull-right' href='{{ route('news-web.show', $dat->id ) }}'>read more</a>
-=======
-                                                        {{ $dat->created_at }}
-                                                    </span>
-                                                </div>
-                                                <p class="description">
-                                                    {{ $dat->description }}
-                                                </p>
-                                                <a class='read-more pull-right' href='{{ route('news-web.show' , $dat->id ) }}'>read more</a>
->>>>>>> 3eaa567ee33606c3e4ec51fa160595cffcdb63da
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-<<<<<<< HEAD
                             @endif
 
-=======
-                            @else
-                                <div class="post-content">
-                                    <p>No image available for this post</p>
-                                </div>
-                            @endif
->>>>>>> 3eaa567ee33606c3e4ec51fa160595cffcdb63da
                         @endforeach
 
                         <ul class='pagination admin-pagination'>

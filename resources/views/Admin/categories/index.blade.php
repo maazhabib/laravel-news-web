@@ -28,7 +28,7 @@
                                 <td>{{ $cat->no_post}}</td>
                                 @if ($cat->no_post == 0)
                                     <td class='edit'><a href='{{ route('categories.show' , $cat->id) }}'><i class='fa fa-edit'></i></a></td>
-                                    <td class='delete'><a href='{{ route('delete.categories' , $cat->id) }}'><i class='fa fa-trash-o'></i></a></td>
+                                    <td class='delete'><a href='{{ route('categories.delete' , $cat->id) }}'><i class='fa fa-trash-o'></i></a></td>
                                 @else
                                     <td class='edit'><i class='fa fa-edit'></i></td>
                                     <td class='delete'><i class='fa fa-trash-o'></i></td>

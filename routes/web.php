@@ -23,7 +23,7 @@ Route::resource('/user', UserController::class);
 Route::get('/delete/{user}' , [UserController::class , 'delete'])->name('delete.user');
 
 Route::resource('/categories', CategoriesController::class);
-Route::get('/categories/delete/{categories}', [CategoriesController::class, 'delete'])->name('delete.categories');
+Route::get('/categories/delete/{categories}', [CategoriesController::class, 'delete'])->name('categories.delete');
 
 Route::resource('/post', PostController::class);
 Route::get('/post/delete/{post}', [PostController::class, 'delete'])->name('post.delete');
