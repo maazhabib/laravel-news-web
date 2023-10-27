@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\post;
 use App\Models\categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class PostController extends Controller
@@ -42,16 +43,16 @@ class PostController extends Controller
             $post->categories_id                   = $validatedData['categories_id'];
             $post->image                           = $imageName;
             $post->post_date                       = date("Y-m-d");
-            // $post->categories->no_post             = +1 ;
             $post->save();
+
+            $count = categories::where('id', $post->categories_id)->select('no_post')->first();
+            categories::where('id', $post->categories_id)->update(['no_post' => $count->no_post + 1]);
+
 
             return redirect()->route('post.index');
         }
 
-    public function show($id)
-        {
 
-        }
 
     public function edit($id)
         {
@@ -85,6 +86,8 @@ class PostController extends Controller
         {
             $post =Post::where('id',$id)->first();
             $post->delete();
+            $count = categories::where('id', $post->categories_id)->select('no_post')->first();
+            categories::where('id', $post->categories_id)->update(['no_post' => $count->no_post - 1]);
 
             return redirect()->route('post.index');
         }
