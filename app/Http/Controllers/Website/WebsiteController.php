@@ -23,8 +23,8 @@ class WebsiteController extends Controller
         }else{
             $post = Post::orderBy('id', 'desc')->paginate(4);
         }
+        
             $Sidebar = Post::orderBy('id', 'desc')->take(3)->get();
-
             return view('website.pages.index', compact('post' , 'search' , 'Sidebar'));
     }
 

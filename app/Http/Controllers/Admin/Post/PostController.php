@@ -48,7 +48,6 @@ class PostController extends Controller
             $count = categories::where('id', $post->categories_id)->select('no_post')->first();
             categories::where('id', $post->categories_id)->update(['no_post' => $count->no_post + 1]);
 
-
             return redirect()->route('post.index');
         }
 
@@ -67,8 +66,9 @@ class PostController extends Controller
                 'title'                           => 'required|string',
                 'description'                     => 'required|string',
                 'categories_id'                   => 'required|exists:App\Models\Categories,id',
-                'images'                           => 'nullable|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                'images'                          => 'nullable|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
+
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('images'), $imageName);
 
@@ -86,6 +86,7 @@ class PostController extends Controller
         {
             $post =Post::where('id',$id)->first();
             $post->delete();
+
             $count = categories::where('id', $post->categories_id)->select('no_post')->first();
             categories::where('id', $post->categories_id)->update(['no_post' => $count->no_post - 1]);
 
