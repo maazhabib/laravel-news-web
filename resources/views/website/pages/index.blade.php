@@ -34,7 +34,7 @@
                                                        echo htmlspecialchars_decode(Str::limit($dat->description, 30));
                                                    @endphp
                                                 </p>
-                                                <a class='read-more pull-right' href='{{ route('news-web.show', $dat->id ) }}'>read more</a>
+                                                <a class='read-more pull-right' href='c'>read more</a>
                                             </div>
                                         </div>
                                     </div>

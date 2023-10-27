@@ -30,7 +30,7 @@ class PostController extends Controller
                 'title'                           => 'required|string',
                 'description'                     => 'required|string',
                 'categories_id'                   => 'required|exists:App\Models\Categories,id',
-                'images'                           => 'nullable|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                'images'                          => 'nullable|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
 
             $imageName = time().'.'.$request->image->extension();
@@ -41,6 +41,8 @@ class PostController extends Controller
             $post->description                     = $validatedData['description'];
             $post->categories_id                   = $validatedData['categories_id'];
             $post->image                           = $imageName;
+            $post->post_date                       = date("Y-m-d");
+            // $post->categories->no_post             = +1 ;
             $post->save();
 
             return redirect()->route('post.index');

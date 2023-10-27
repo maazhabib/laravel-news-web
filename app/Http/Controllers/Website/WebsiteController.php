@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
-
 class WebsiteController extends Controller
 {
 
@@ -19,55 +18,23 @@ class WebsiteController extends Controller
         if($search){
             $post = Post::where('title', 'like', '%' . $search . '%')
                 ->orWhere('description', 'like', '%' . $search . '%')
-                ->orderBy('id', 'desc')
+                ->orderBy('id', 'desc' )
                 ->paginate(4);
         }else{
             $post = Post::orderBy('id', 'desc')->paginate(4);
-            // post::orderBy('created_at', 'desc')->first();
         }
+            $Sidebar = Post::orderBy('id', 'desc')->take(3)->get();
 
-        return view('website.pages.index', compact('post' , 'search'));
+            return view('website.pages.index', compact('post' , 'search' , 'Sidebar'));
     }
 
-
-    public function sidebar()
-        {
-            $sidebar = post::where('id')->latest('created_at')->get()->first();
-            return view('website.pages.sidebar', ['sidebar'=> $sidebar ]);
-        }
-
-
-
-    public function store(Request $request)
-        {
-            //
-        }
-
-
+        // Single page
         public function show($id)
         {
             $post = Post::find($id);
             $categories = categories::all();
+            $Sidebar = Post::orderBy('post_date', 'desc')->take(3)->get();
 
-            return view('website.pages.single', compact('post', 'categories'));
-        }
-
-
-
-    public function edit($id)
-        {
-            //
-        }
-
-
-    public function update(Request $request, $id)
-        {
-            //
-        }
-
-
-    public function destroy($id)
-        {
-            //
+            return view('website.pages.single', compact('post', 'categories' , 'Sidebar'));
         }
 }
