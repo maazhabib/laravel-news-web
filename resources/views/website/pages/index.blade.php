@@ -56,5 +56,5 @@
             </div>
         </div>
     </div>
-
+    @include('website.pages.sidebar')
 @endsection

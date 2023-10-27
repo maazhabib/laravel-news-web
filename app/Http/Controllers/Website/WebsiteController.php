@@ -28,7 +28,26 @@ class WebsiteController extends Controller
             return view('website.pages.index', compact('post' , 'search' , 'Sidebar'));
     }
 
+<<<<<<< HEAD
         // Single page
+=======
+
+    public function sidebar()
+    {
+        $Posts = Post::orderBy('created_at', 'desc')->take(5)->get();
+        return view('website.pages.sidebar', compact('Posts'));
+    }
+
+
+
+
+    public function store(Request $request)
+        {
+            //
+        }
+
+
+>>>>>>> 03ec7845ace75859c66183742404d4852c5e0573
         public function show($id)
         {
             $post = Post::find($id);

@@ -14,7 +14,11 @@ class post extends Model
     public function categories(){
         return $this->belongsTo(categories::class);
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 03ec7845ace75859c66183742404d4852c5e0573
     public function scopeLatestPost()
     {
         return $this->latest()->first();
