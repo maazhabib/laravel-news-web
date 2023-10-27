@@ -31,10 +31,11 @@ class WebsiteController extends Controller
 
 
     public function sidebar()
-        {
-            $sidebar = post::where('id')->latest('created_at')->get()->first();
-            return view('website.pages.sidebar', ['sidebar'=> $sidebar ]);
-        }
+    {
+        $Posts = Post::orderBy('created_at', 'desc')->take(5)->get();
+        return view('website.pages.sidebar', compact('Posts'));
+    }
+
 
 
 

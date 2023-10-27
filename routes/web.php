@@ -30,4 +30,5 @@ Route::get('/post/delete/{post}', [PostController::class, 'delete'])->name('post
 
 Route::resource('/news-web', WebsiteController::class);
 // sidebar
-Route::get('/side-bar', [WebsiteController::class, 'sidebar'])->name('web.sidebar');
+Route::get('/sidebar', [WebsiteController::class, 'sidebar'])->name('website.sidebar');
+
