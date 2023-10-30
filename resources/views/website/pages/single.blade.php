@@ -1,8 +1,6 @@
 @extends('website.layouts.header')
 
-
 @section('content')
-
     <div id="main-content">
         <div class="container">
             <div class="row">
@@ -40,5 +38,4 @@
             </div>
         </div>
     </div>
-
 @endsection

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\post;
 use App\Models\categories;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 
 class PostController extends Controller
@@ -82,9 +81,14 @@ class PostController extends Controller
             return redirect()->route('post.index');
         }
 
-    public function delete($id)
+        public function delete($id)
         {
-            $post =Post::where('id',$id)->first();
+            $post = Post::find($id);
+
+            $imagePath = public_path('images') . '/' . $post->image;
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
             $post->delete();
 
             $count = categories::where('id', $post->categories_id)->select('no_post')->first();
@@ -92,4 +96,5 @@ class PostController extends Controller
 
             return redirect()->route('post.index');
         }
+
 }

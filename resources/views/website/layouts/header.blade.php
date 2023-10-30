@@ -22,7 +22,7 @@
         <div class="row">
             <!-- LOGO -->
             <div class=" col-md-offset-4 col-md-4">
-                <a href="index.php" id="logo"><img src="{{ asset('images/news.jpg') }}"></a>
+                <a href="index.php" id="logo"><img src="{{ asset('images/web_img/news.jpg') }}"></a>
             </div>
             <!-- /LOGO -->
         </div>
@@ -35,10 +35,11 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class='menu'>
-                    <li><a href='category.php'>Business</a></li>
-                    <li><a href='category.php'>Entertainment</a></li>
-                    <li><a href='category.php'>Sports</a></li>
-                    <li><a href='category.php'>Politics</a></li>
+                    @foreach ($categories as $cat)
+                        @if ($cat->no_post > 0 )
+                            <li><a href='#'>{{ $cat->categories_name }}</a></li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
         </div>

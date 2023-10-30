@@ -22,7 +22,7 @@
                 <div class="row">
                     <!-- LOGO -->
                     <div class="col-md-2">
-                        <a href="post.php"><img class="logo" src="{{ asset('images/news.jpg') }}"></a>
+                        <a href="post.php"><img class="logo" src="{{ asset('images/web_img/news.jpg') }}"></a>
                     </div>
                     <!-- /LOGO -->
                       <!-- LOGO-Out -->

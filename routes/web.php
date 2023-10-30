@@ -28,5 +28,7 @@ Route::get('/categories/delete/{categories}', [CategoriesController::class, 'del
 Route::resource('/post', PostController::class);
 Route::get('/post/delete/{post}', [PostController::class, 'delete'])->name('post.delete');
 
+
 Route::resource('/news-web', WebsiteController::class);
+// Route::get('/news-web/category', [WebsiteController::class, 'index'])->name('news-web.category');
 
