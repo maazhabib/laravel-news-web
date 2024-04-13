@@ -16,7 +16,9 @@
                                 </span>
                                 <span>
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
-                                    {{ $post->created_at->format('d, M, Y')}}
+                                    @if ($post && $post->created_at)
+                                        {{ $post->created_at->format('d, M, Y') }}
+                                    @endif
                                 </span>
                             </div>
 
