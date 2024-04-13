@@ -31,9 +31,9 @@
                                                 <p class="description">{{ implode(' ', array_slice(explode(' ', $posts->description) , 0, 40)) }}
                                                     ...</p>
 
+                                                <a class='read-more pull-right'
+                                                   href='{{ route('news-web.show' , encrypt($posts->id)) }}'>read more</a>
                                             </div>
-                                            <a class='read-more pull-right'
-                                               href='{{ route('news-web.show' , encrypt($posts->id)) }}'>read more</a>
                                         </div>
                                     </div>
                                 </div>
