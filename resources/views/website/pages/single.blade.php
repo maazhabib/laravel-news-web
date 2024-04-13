@@ -8,26 +8,25 @@
                     <!-- post-container -->
                     <div class="post-container">
                         <div class="post-content single-post">
-                            <h3>{{ $post->title ?? '' }}</h3>
+                            <h3>{{ $post->title ?? '-' }}</h3>
                             <div class="post-information">
                                 <span>
                                     <i class="fa fa-tags" aria-hidden="true"></i>
-                                    {{ $post->categories->categories_name ?? '' }}
+                                    {{ $post->categories->categories_name ?? '-' }}
                                 </span>
                                 <span>
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                     @if ($post && $post->created_at)
                                         {{ $post->created_at->format('d, M, Y') }}
+                                    @else
+                                        {{ '-' }}
                                     @endif
                                 </span>
                             </div>
 
-                            @if(isset($post->image))
-                                <img class="single-feature-image" src="{{ $post->image }}" alt="{{ $post->title }}"/>
-                            @endif
-                            <p class="description">
-                                {{ $post->description ?? ''}}
-                            </p>
+                            <img class="single-feature-image" src="{{ $post->image }}" alt="{{ $post->title }}"/>
+
+                            <p class="description">{{ $post->description ?? ''}}</p>
                         </div>
                     </div>
                     <!-- /post-container -->

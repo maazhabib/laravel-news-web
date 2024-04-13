@@ -17,15 +17,15 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="inner-content clearfix">
-                                                <h3><a href='single.php'>{{ $posts->title }}</a></h3>
+                                                <h3><a href='single.php'>{{ $posts->title ?? '-'}}</a></h3>
                                                 <div class="post-information">
                                                     <span>
                                                         <i class="fa fa-tags" aria-hidden="true"></i>
-                                                        <a href='category.php'>{{ $posts->categories->categories_name }}</a>
+                                                        <a href='category.php'>{{ $posts->categories->categories_name ?? '-'}}</a>
                                                     </span>
                                                     <span>
                                                         <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                        {{ $posts->created_at->format('d, M, Y') }}
+                                                        {{ $posts->created_at->format('d, M, Y') ?? '-'}}
                                                     </span>
                                                 </div>
                                                 <p class="description">{{ implode(' ', array_slice(explode(' ', $posts->description) , 0, 40)) }}
@@ -42,11 +42,11 @@
                             <h3>Unfortunately, there is currently no news available.</h3>
                         @endforelse
 
-                        @if($post->count() > 10)
+                        @if($post->count() >= 4)
                             <ul class='pagination admin-pagination'>
-                                @for ($i = 1; $i <= $posts->lastPage(); $i++)
-                                    <li class="{{ ($posts->currentPage() == $i) ? 'active' : '' }}">
-                                        <a href="{{ $posts->url($i) }}">{{ $i }}</a>
+                                @for ($i = 1; $i <= $post->lastPage(); $i++)
+                                    <li class="{{ ($post->currentPage() == $i) ? 'active' : '' }}">
+                                        <a href="{{ $post->url($i) }}">{{ $i }}</a>
                                     </li>
                                 @endfor
                             </ul>
