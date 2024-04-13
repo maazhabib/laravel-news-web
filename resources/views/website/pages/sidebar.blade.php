@@ -5,10 +5,10 @@
     <div class="recent-post-container">
         <h4>Recent Posts</h4>
 
-        @foreach($Sidebar as $side)
+        @forelse($Sidebar as $side)
             <div class="recent-post">
-                <a class="post-img" href="{{ route('news-web.show', $side->id) }}">
-                    <img src="{{ asset('images/' . $side->image) }}" alt="{{ $side->title }}"/>
+                <a class="post-img" href="{{ route('news-web.show', encrypt($side->id)) }}">
+                    <img src="{{ $side->image }}" alt="{{ $side->title }}"/>
                 </a>
                 <div class="post-content">
                     <h5><a href="">{{ $side->title }}</a></h5>
@@ -20,9 +20,11 @@
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         {{ $side->created_at->format('d, M, Y') }}
                     </span>
-                    <a class="read-more" href="{{ route('news-web.show', $side->id) }}">read more</a>
+                    <a class="read-more" href="{{ route('news-web.show', encrypt($side->id)) }}">read more</a>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <p>Regrettably, there are no recent news updates available at this time.</p>
+        @endforelse
     </div>
 </div>

@@ -28,6 +28,7 @@ class WebsiteController extends Controller
 
     public function show($id)
         {
+            $id = decrypt($id);
             $post = Post::find($id);
             $categories = categories::all();
             $Sidebar = Post::orderBy('post_date', 'desc')->take(3)->get();

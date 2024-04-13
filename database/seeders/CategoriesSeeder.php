@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use App\Models\Category;
+use App\Models\categories;
 
 class CategoriesSeeder extends Seeder
 {
@@ -15,6 +15,6 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\categories::factory()->count(20)->create();
+        categories::factory()->count(20)->create();
     }
 }

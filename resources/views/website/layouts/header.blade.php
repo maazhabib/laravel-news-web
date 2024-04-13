@@ -22,7 +22,7 @@
         <div class="row">
             <!-- LOGO -->
             <div class=" col-md-offset-4 col-md-4">
-                <a href="index.php" id="logo"><img src="{{ asset('images/web_img/news.jpg') }}"></a>
+                <a href="{{ route('news-web.index') }}" id="logo"><img src="{{ asset('images/web_img/news.jpg') }}"></a>
             </div>
             <!-- /LOGO -->
         </div>

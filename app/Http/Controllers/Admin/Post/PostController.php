@@ -33,14 +33,14 @@ class PostController extends Controller
                 'images'                          => 'nullable|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
 
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
+//            $imageName = time().'.'.$request->image->extension();
+//            $request->image->move(public_path('images'), $imageName);
 
             $post = new post();
             $post->title                           = $validatedData['title'];
             $post->description                     = $validatedData['description'];
             $post->categories_id                   = $validatedData['categories_id'];
-            $post->image                           = $imageName;
+//            $post->image                           = $imageName;
             $post->post_date                       = date("Y-m-d");
             $post->save();
 

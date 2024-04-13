@@ -9,7 +9,7 @@ use App\Http\Controllers\Website\WebsiteController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('news-web');
 });
 
 Route::get('/dashboard', function () {
