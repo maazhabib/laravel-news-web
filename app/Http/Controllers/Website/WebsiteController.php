@@ -22,16 +22,15 @@ class WebsiteController extends Controller
         $data['sidebar'] =  Post::orderBy('created_at', 'desc')->take(3)->get();
 
         return view('website.pages.index', $data);
-
     }
 
     public function show($id)
     {
         $id                 = decrypt($id);
-        $post               = Post::find($id);
-        $categories         = categories::all();
-        $Sidebar            = Post::orderBy('post_date', 'desc')->take(3)->get();
+        $data['post']               = Post::find($id);
+        $data['categories']         = categories::all();
+        $data['sidebar']            = Post::orderBy('post_date', 'desc')->take(3)->get();
 
-        return view('website.pages.single', compact('post', 'categories', 'Sidebar'));
+        return view('website.pages.single', $data);
     }
 }

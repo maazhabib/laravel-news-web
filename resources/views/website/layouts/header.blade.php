@@ -28,16 +28,16 @@
         </div>
     </div>
 </div>
-<!-- /HEADER -->
-<!-- Menu Bar -->
+
 <div id="menu-bar">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <ul class='menu'>
-                    @foreach ($categories as $cat)
-                        @if ($cat->no_post > 0 )
-                            <li><a href='#'>{{ $cat->categories_name }}</a></li>
+                    <li><a href='{{ route('news-web.index') }}'>{{ 'All News' }}</a></li>
+                    @foreach ($categories as $categorie)
+                        @if ($categorie->no_post > 0 )
+                            <li><a href='#'>{{ $categorie->categories_name }}</a></li>
                         @endif
                     @endforeach
                 </ul>
@@ -45,7 +45,6 @@
         </div>
     </div>
 </div>
-<!-- /Menu Bar -->
 
 
 @yield('content')
