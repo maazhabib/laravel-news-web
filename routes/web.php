@@ -30,5 +30,6 @@ Route::get('/post/delete/{post}', [PostController::class, 'delete'])->name('post
 
 
 Route::resource('/news-web', WebsiteController::class);
+//Route::get('/news-web/sidebar', [WebsiteController::class, 'sidebar'])->name('news-web_sidebar');
 // Route::get('/news-web/category', [WebsiteController::class, 'index'])->name('news-web.category');
 

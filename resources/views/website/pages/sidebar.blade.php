@@ -5,7 +5,7 @@
     <div class="recent-post-container">
         <h4>Recent Posts</h4>
 
-        @forelse($Sidebar as $side)
+        @forelse($sidebar as $side)
             <div class="recent-post">
                 <a class="post-img" href="{{ route('news-web.show', encrypt($side->id)) }}">
                     <img src="{{ $side->image }}" alt="{{ $side->title }}"/>

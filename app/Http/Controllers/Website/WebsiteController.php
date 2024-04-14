@@ -1,38 +1,37 @@
 <?php
+
 namespace App\Http\Controllers\Website;
 
 use App\Models\post;
 use App\Models\categories;
 use App\Http\Controllers\Controller;
+//use http\Env\Request;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent;
 
 class WebsiteController extends Controller
 {
 
-    public function index()
-        {
-            $search = request()->query('search');
+    public $pagination = 4;
 
-            if($search){
-                $post = Post::where('title', 'like', '%' . $search . '%')
-                    ->orWhere('description', 'like', '%' . $search . '%')
-                    ->orderBy('id', 'desc' )
-                    ->paginate(4);
-            }else{
-                $post = Post::orderBy('id', 'desc')->paginate(4);
-            }
-                $categories = categories::all();
-                $Sidebar = Post::orderBy('id', 'desc')->take(3)->get();
-                return view('website.pages.index', compact('post' , 'search' , 'Sidebar' , 'categories'));
-        }
+    public function index(Request $request)
+    {
+        $data['posts']          = Post::orderBy('id', 'desc')->search($request)->paginate($this->pagination);
+        $data['categories']     = categories::all();
 
+        $data['sidebar'] =  Post::orderBy('created_at', 'desc')->take(3)->get();
+
+        return view('website.pages.index', $data);
+
+    }
 
     public function show($id)
-        {
-            $id = decrypt($id);
-            $post = Post::find($id);
-            $categories = categories::all();
-            $Sidebar = Post::orderBy('post_date', 'desc')->take(3)->get();
+    {
+        $id                 = decrypt($id);
+        $post               = Post::find($id);
+        $categories         = categories::all();
+        $Sidebar            = Post::orderBy('post_date', 'desc')->take(3)->get();
 
-            return view('website.pages.single', compact('post', 'categories' , 'Sidebar'));
-        }
+        return view('website.pages.single', compact('post', 'categories', 'Sidebar'));
+    }
 }
