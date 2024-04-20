@@ -11,10 +11,12 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
 
+    public $pagination = 10;
+
     public function index()
         {
-            $post = post::orderBy('id', 'desc', categories::all())->paginate(12);
-            return view('admin.posts.index', ['post' => $post ]);
+            $data['posts'] = post::orderBy('id', 'desc', categories::all())->paginate($this->pagination);
+            return view('admin.posts.index', $data);
 
         }
 

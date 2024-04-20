@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'email'                 => 'admin@admin.com',
             'email_verified_at'     => now(),
             'password'              => '$2y$10$8FOGhQHMpIPYzOPQW25LL.va6EURgIrDPI1BuUdDfXSIZ/sZ2CO3.',  // 12345678
-            'role'                  => 'admin',
+            'role'                  => 'super_admin',
             'remember_token'        => Str::random(10),
         ]);
     }

@@ -539,6 +539,17 @@ i.fa{
     text-decoration: underline;
 }
 
+.fa-plus{
+    color: white !important;
+}
+
+.fa-edit{
+    color: green !important;
+}
+
+.fa-trash-o{
+    color: red !important;
+}
 /* ===================== */
 /* FrontEnd CSS END */
 /* ===================== */

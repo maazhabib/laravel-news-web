@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
 class PostFactory extends Factory
 {
@@ -14,7 +15,12 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title'                 => $this->faker->name,
+            'description'           => $this->faker->text,
+            'author_name'           => 'Super Admin',
+            'post_date'             => Carbon::now(),
+            'image'                 => 'https://picsum.photos/200',
+
         ];
     }
 }

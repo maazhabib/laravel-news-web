@@ -1,61 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>ADMIN Panel</title>
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
-        <!-- Font Awesome Icon -->
-        <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
-        <!-- Custom stlylesheet -->
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    </head>
-    <body>
-        <!-- HEADER -->
-        <div id="header-admin">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <!-- LOGO -->
-                    <div class="col-md-2">
-                        <a href="post.php"><img class="logo" src="{{ asset('images/web_img/news.jpg') }}"></a>
-                    </div>
-                    <!-- /LOGO -->
-                      <!-- LOGO-Out -->
-                    <div class="col-md-offset-9  col-md-1">
-                        <a href="logout.php" class="admin-logout" >Logout</a>
-                    </div>
-                    <!-- /LOGO-Out -->
-                </div>
+<div id="header-admin">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- LOGO -->
+            <div class="col-md-2">
+                <a href="post.php"><img class="logo" src="{{ asset('images/web_img/news.jpg') }}"></a>
             </div>
-        </div>
-        <!-- /HEADER -->
-        <!-- Menu Bar -->
-        <div id="admin-menubar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                       <ul class="admin-menu">
-                            <li>
-                                <a href="{{ route('post.index') }}">Post</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('categories.index') }}">Category</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('user.index') }}">Users</a>
-                            </li>
-                        </ul>
+
+            <div class="col-md-10 text-right">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <form method="POST" action="{{ route('logout') }}" class="dropdown-item">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                             onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /Menu Bar -->
-
-        @yield('content')
-
-        @extends('Admin.layouts.footer')
+    </div>
+</div>

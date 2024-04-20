@@ -17,8 +17,8 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->integer('categories_id');
-            $table->integer('author_id')->nullable();
+            $table->integer('categories_id')->nullable();
+            $table->string('author_name')->nullable();
             $table->date('post_date')->nullable();
             $table->string('image')->nullable();
 //            $table->string('create_at')->nullable();
