@@ -1,45 +1,60 @@
-@extends('Admin.layouts.header')
+@extends('Admin.layouts.app')
 
 @section('content')
 
-  <div id="admin-content">
-      <div class="container">
-         <div class="row">
-             <div class="col-md-12">
-                 <h1 class="admin-heading">Add New Post</h1>
-             </div>
-              <div class="col-md-offset-3 col-md-6">
-                  <!-- Form -->
-                  <form  action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+    <div id="admin-content">
+        <div class="container">
+
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Create Post</h5>
+                    <a class="btn btn-danger float-right" href="{{ route('post.index') }}"><i
+                            class='fa fa-arrow-left'></i> Back</a>
+                </div>
+
+                <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
                     @csrf
-                      <div class="form-group">
-                          <label for="title">Title</label>
-                          <input type="text" name="title" class="form-control" autocomplete="off" required>
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleInputPassword1">Description</label>
-                          <textarea name="description" class="form-control" rows="5"  required></textarea>
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleInputPassword1">Category</label>
-                          <select name="categories_id" class="form-control">
-                                @foreach ($categories as $cat)
 
-                                    <option value="{{ $cat->id }}" selected>{{ $cat->categories_name }}</option>
+                    <div class="card-body">
 
+                        <div class="form-group">
+                            <label for="title">Title <span class="label-field-required">*</span></label>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
+                                   id="title" placeholder="Title">
+                            @error('title')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category <span class="label-field-required">*</span></label>
+                            <select class="form-control @error('category') is-invalid @enderror" name="category"
+                                    id="category">
+                                <option disabled selected>Select Category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->categories_name }}</option>
                                 @endforeach
-                          </select>
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleInputPassword1">Post image</label>
-                          <input type="file" name="image" required>
-                      </div>
-                      <input type="submit" name="submit" class="btn btn-primary" value="Save" required />
-                  </form>
-                  <!--/Form -->
-              </div>
-          </div>
-      </div>
-  </div>
+                            </select>
+                            @error('category')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description <span class="label-field-required">*</span></label>
+                            <textarea name="description"
+                                      class="form-control @error('description') is-invalid @enderror summernote"></textarea>
+                            @error('description')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <button type="submit" class="btn btn-success float-right"><i class='fa fa-save'></i> Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 @endsection

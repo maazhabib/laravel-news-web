@@ -63,7 +63,7 @@ img.logo{
 }
 
 #admin-menubar{
-    background-color: #fff;
+    background-color: rgba(54, 50, 50, 0.81);
 }
 #admin-menubar .admin-menu{
     font-size: 0;
@@ -73,7 +73,7 @@ img.logo{
     margin: 0 5px 0 0;
 }
 #admin-menubar .admin-menu li a{
-    color: #1E90FF;
+    color: white;
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
@@ -82,10 +82,10 @@ img.logo{
     transition: all 0.3s;
 }
 
-#admin-menubar .admin-menu li a:hover{
-    color: #fff;
-    background-color: #1E90FF;
-}
+/*#admin-menubar .admin-menu li a:hover{*/
+/*    color: #fff;*/
+/*    background-color: #1E90FF;*/
+/*}*/
 
 #admin-content{
     padding: 20px 0;
@@ -539,16 +539,16 @@ i.fa{
     text-decoration: underline;
 }
 
-.fa-plus{
-    color: white !important;
-}
-
 .fa-edit{
     color: green !important;
 }
 
-.fa-trash-o{
+.fa-trash-o, .label-field-required{
     color: red !important;
+}
+
+.fa-arrow-left, .fa-save, .fa-plus{
+    color: white !important;
 }
 /* ===================== */
 /* FrontEnd CSS END */
