@@ -1,7 +1,6 @@
 @extends('Admin.layouts.app')
 
 @section('content')
-
     <div id="admin-content">
         <div class="container">
 
@@ -14,9 +13,7 @@
 
                 <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
                     @csrf
-
                     <div class="card-body">
-
                         <div class="form-group">
                             <label for="title">Title <span class="label-field-required">*</span></label>
                             <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
@@ -48,13 +45,12 @@
                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
                         </div>
-
-                        <button type="submit" class="btn btn-success float-right"><i class='fa fa-save'></i> Save
-                        </button>
+                    </div>
+                    <div class="card-footer bg-white d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success float-right"><i class='fa fa-save'></i> Save</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 @endsection

@@ -24,10 +24,10 @@
                         <tbody>
                             @foreach($posts as $post)
                                 <tr>
-                                    <td>{{ $post->title ?? '-'}}</td>
-                                    <td>{{ $post->categories->categories_name ?? '-'}}</td>
-                                    <td>{{ $post->created_at->format('d, M, Y') ?? '-'}}</td>
-                                    <td>{{ $post->author_name ?? '-'}}</td>
+                                    <td><small>{{ $post->title ?? '-'}}</small></td>
+                                    <td><small>{{ $post->categories->categories_name ?? '-'}}   </small></td>
+                                    <td><small><span class="badge badge-info">{{ $post->created_at->format('d, M, Y') ?? '-'}}</span></small></td>
+                                    <td><small><span class="badge badge-secondary">{{ $post->author_name ?? '-'}}</span></small></td>
                                     <td>
                                         <a class='edit' href='{{ route('post.edit' , $post->id) }}'><i class='fa fa-edit'></i></a>
                                         <a class='delete' href='{{ route('post.delete' , $post->id) }}'><i class='fa fa-trash-o'></i></a>
@@ -38,7 +38,7 @@
                     </table>
                 </div>
 
-                <div class="card-footer">
+                <div  class="card-footer bg-white d-flex justify-content-end">
                     @include('layouts.pagination', ['posts' => $posts])
                 </div>
             </div>

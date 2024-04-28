@@ -30,7 +30,7 @@ class PostController extends Controller
         return[
             'title'         => $request->title,
             'category'      => $request->category,
-            'description'   => $request->description,
+            'description'   => $request->description,3
         ];
     }
 
