@@ -39,8 +39,8 @@
 
                         <div class="form-group">
                             <label for="description">Description <span class="label-field-required">*</span></label>
-                            <textarea name="description"
-                                      class="form-control @error('description') is-invalid @enderror summernote"></textarea>
+                            <textarea name="description" rows="11"
+                                      class="form-control @error('description') is-invalid @enderror "></textarea>
                             @error('description')
                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
