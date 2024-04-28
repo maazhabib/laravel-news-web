@@ -38,4 +38,9 @@ class post extends Model
     {
         return $this->latest()->first();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
 }

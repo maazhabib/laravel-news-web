@@ -17,7 +17,7 @@ class PostFactory extends Factory
         return [
             'title'                 => $this->faker->name,
             'description'           => $this->faker->text,
-            'author_name'           => 'Super Admin',
+            'author_id'             => '1',
             'post_date'             => Carbon::now(),
             'image'                 => 'https://picsum.photos/200',
 

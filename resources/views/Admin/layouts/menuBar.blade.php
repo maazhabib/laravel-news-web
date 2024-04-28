@@ -13,7 +13,7 @@
                 <ul class="admin-menu my-2">
                     @foreach($menuItems as $routeName => $label)
                         <li>
-                            <a class="btn btn-primary btn-sm {{ Str::startsWith(request()->route()->getName(), $routeName . '.') ? 'active' : '' }}" href="{{ route($routeName . '.index') }}">{{ $label }}</a>
+                            <a class="btn btn-primary btn-sm {{ Str::startsWith(request()->route()->getName(), $routeName . '.') ? 'active' : '' }}" href="{{ route($routeName . '.index') }}"><small>{{ $label }}</small></a>
                         </li>
                     @endforeach
                 </ul>

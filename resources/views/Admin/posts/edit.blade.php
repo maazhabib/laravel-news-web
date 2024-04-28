@@ -1,54 +1,56 @@
-@extends('Admin.layouts.header')
+@extends('Admin.layouts.app')
 
 @section('content')
+    <div id="admin-content">
+        <div class="container">
 
-<div id="admin-content">
-  <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-        <h1 class="admin-heading">Update Post</h1>
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><b>Edit Post</b></h5>
+                    <a class="btn btn-danger float-right" href="{{ route('post.index') }}"><i
+                            class='fa fa-arrow-left'></i> Back</a>
+                </div>
+
+                <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="title">Title <span class="label-field-required">*</span></label>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
+                                   id="title" placeholder="Title">
+                            @error('title')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category <span class="label-field-required">*</span></label>
+                            <select class="form-control @error('category') is-invalid @enderror" name="category"
+                                    id="category">
+                                <option disabled selected>Select Category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->categories_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description <span class="label-field-required">*</span></label>
+                            <textarea name="description"
+                                      class="form-control @error('description') is-invalid @enderror summernote"></textarea>
+                            @error('description')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success float-right"><i class='fa fa-save'></i> Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="col-md-offset-3 col-md-6">
-        <!-- Form for show edit-->
-        <form action="{{ route('post.update' , $post->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
-            @csrf
-            @method('PUT')
-
-            <div class="form-group">
-                <label for="exampleInputTile">Title</label>
-                <input type="text" name="title"  class="form-control" id="exampleInputUsername" value="{{ $post->title }}">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1"> Description</label>
-                <textarea name="description" class="form-control"  required rows="5">{{ $post->description }}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputCategory">Category</label>
-                <select class="form-control" name="categories_id">
-                    @foreach ($categories as $cat)
-
-                        <option value="{{ $cat->id }}" selected>{{ $cat->categories_name }}</option>
-
-                        {{-- @if (isset($psot))
-                            @if ($cat->id == $post->categories_id)
-                            selected
-                            @endif
-                        @endif --}}
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">Post image</label>
-                <input type="file" name="image"><br>
-                <img  src="{{ asset('images/' . $post->image)}}" height="150px">
-            </div>
-            <input type="submit" class="btn btn-primary" value="Update" />
-        </form>
-        <!-- Form End -->
-      </div>
-    </div>
-  </div>
-</div>
-
-
 @endsection

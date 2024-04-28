@@ -6,7 +6,7 @@
 
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Create Post</h5>
+                    <h5 class="mb-0"><b>Create Post</b></h5>
                     <a class="btn btn-danger float-right" href="{{ route('post.index') }}"><i
                             class='fa fa-arrow-left'></i> Back</a>
                 </div>

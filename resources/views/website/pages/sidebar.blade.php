@@ -14,7 +14,7 @@
                     <h5><a href="">{{ $side->title }}</a></h5>
                     <span>
                         <i class="fa fa-tags" aria-hidden="true"></i>
-                        <a href="">{{ $side->categories->categories_name }}</a>
+                        <a href="">{{ $side->categories->categories_name ?? '-' }}</a>
                     </span>
                     <span>
                         <i class="fa fa-calendar" aria-hidden="true"></i>

@@ -7,6 +7,7 @@ use App\Http\Requests\postsRequest;
 use App\Models\post;
 use App\Models\categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -16,7 +17,8 @@ class PostController extends Controller
 
     public function index()
     {
-        $data['posts'] = post::orderBy('id', 'desc', categories::all())->paginate($this->pagination);
+        $data['posts'] = post::with('user')->orderBy('id' , 'desc')->paginate($this->pagination);
+
         return view('admin.posts.index', $data);
 
     }
@@ -30,27 +32,19 @@ class PostController extends Controller
         return[
             'title'         => $request->title,
             'category'      => $request->category,
-            'description'   => $request->description,3
+            'description'   => $request->description,
+            'author_id'     => Auth::user()->id,
         ];
     }
 
     public function store(postsRequest $request)
     {
-//            $imageName = time().'.'.$request->image->extension();
-//            $request->image->move(public_path('images'), $imageName);
+        $post = post::create($this->arrayStore($request));
 
-//            $post = new post();
-//            $post->title                           = $validatedData['title'];
-//            $post->description                     = $validatedData['description'];
-//            $post->categories_id                   = $validatedData['categories_id'];
-////            $post->image                           = $imageName;
-//            $post->post_date                       = date("Y-m-d");
-//            $post->save();
+        $count = categories::where('id', $post->categories_id)->select('no_post')->first();
+        categories::where('id', $post->categories_id)->update(['no_post' => $count->no_post + 1]);
 
-//            $count = categories::where('id', $post->categories_id)->select('no_post')->first();
-//            categories::where('id', $post->categories_id)->update(['no_post' => $count->no_post + 1]);
-
-        return redirect()->route('post.index');
+        return redirect()->route('post.index')->with('success' , 'Post create successfully');
     }
 
 
