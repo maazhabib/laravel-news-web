@@ -30,8 +30,9 @@ class post extends Model
     }
 
 
-    public function categories(){
-        return $this->belongsTo(categories::class);
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(categories::class, 'categories_id', 'id');
     }
 
     public function scopeLatestPost()
@@ -39,7 +40,7 @@ class post extends Model
         return $this->latest()->first();
     }
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
     }

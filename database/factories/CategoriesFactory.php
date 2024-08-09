@@ -13,7 +13,7 @@ class CategoriesFactory extends Factory
     {
         return [
             'categories_name' => $this->faker->word,
-            'no_post' => 0,
+            'no_post' => 200,
         ];
     }
 }

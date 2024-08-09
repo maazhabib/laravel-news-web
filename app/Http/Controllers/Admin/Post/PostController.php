@@ -17,7 +17,9 @@ class PostController extends Controller
 
     public function index()
     {
-        $data['posts'] = post::with('user')->orderBy('id' , 'desc')->paginate($this->pagination);
+        $data['posts'] = post::with('user', 'categories')
+            ->orderBy('id' , 'desc')
+            ->paginate($this->pagination);
 
         return view('admin.posts.index', $data);
 
@@ -31,7 +33,7 @@ class PostController extends Controller
     public function arrayStore($request){
         return[
             'title'         => $request->title,
-            'category'      => $request->category,
+            'categories_id'      => $request->category,
             'description'   => $request->description,
             'author_id'     => Auth::user()->id,
         ];
@@ -39,10 +41,10 @@ class PostController extends Controller
 
     public function store(postsRequest $request)
     {
-        $post = post::create($this->arrayStore($request));
+        post::create($this->arrayStore($request));
 
-        $count = categories::where('id', $post->categories_id)->select('no_post')->first();
-        categories::where('id', $post->categories_id)->update(['no_post' => $count->no_post + 1]);
+        $count = categories::where('id', $request->category)->select('no_post')->first();
+        categories::where('id', $request->category)->update(['no_post' => $count->no_post + 1]);
 
         return redirect()->route('post.index')->with('success' , 'Post create successfully');
     }
@@ -79,7 +81,7 @@ class PostController extends Controller
 
     public function delete($id)
     {
-        $post = Post::find($id);
+        $post = Post::findorFail($id);
 
         $imagePath = public_path('images') . '/' . $post->image;
         if (file_exists($imagePath)) {
@@ -87,9 +89,10 @@ class PostController extends Controller
         }
         $post->delete();
 
-        $count = categories::where('id', $post->categories_id)->select('no_post')->first();
-        categories::where('id', $post->categories_id)->update(['no_post' => $count->no_post - 1]);
-
+        if (!empty($post->categories_id)){
+            $count = categories::where('id', $post->categories_id)->select('no_post')->first();
+            categories::where('id', $post->categories_id)->update(['no_post' => $count->no_post - 1]);
+        }
         return redirect()->route('post.index');
     }
 

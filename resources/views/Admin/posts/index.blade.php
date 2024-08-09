@@ -14,6 +14,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
+                            <th>S.No</th>
                             <th>Title</th>
                             <th>Category</th>
                             <th>Create Date</th>
@@ -24,8 +25,9 @@
                         <tbody>
                             @foreach($posts as $post)
                                 <tr>
-                                    <td><small>{{ $post->title ?? '-'}}</small></td>
-                                    <td><small>{{ $post->categories->categories_name ?? '-'}}   </small></td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $post->title ?? '-'}}</td>
+                                    <td>{{ $post->categories->categories_name ?? '-'}}</td>
                                     <td><small><span class="badge badge-info">{{ $post->created_at->format('d, M, Y') ?? '-'}}</span></small></td>
                                     <td><small><span class="badge badge-secondary">{{ $post->user->name ?? '-'}}</span></small></td>
                                     <td>

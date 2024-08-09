@@ -8,7 +8,7 @@ use App\Http\Controllers\Website\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
-// Routes that require authentication
+
     Route::get('/dashboard', function () {
         return redirect('post');
     })->name('dashboard');
@@ -25,5 +25,5 @@ Route::middleware(['auth'])->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Routes that do not require authentication
-Route::resource('/news-web', WebsiteController::class);
+Route::get('/', [WebsiteController::class, 'index'])->name('news-web.index');
+Route::get('/show', [WebsiteController::class, 'show'])->name('news-web.show');
